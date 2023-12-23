@@ -15,6 +15,9 @@ class CreatePrivilegijasTable extends Migration
     {
         Schema::create('privilegijas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('zaposleni_id')->constrained('users');
+            $table->foreignId('fajl_id')->constrained('fajls');
+            $table->string('permission');
             $table->timestamps();
         });
     }

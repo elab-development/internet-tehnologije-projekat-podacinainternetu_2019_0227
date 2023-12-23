@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateZaposlenisTable extends Migration
+class CreateFirmasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateZaposlenisTable extends Migration
      */
     public function up()
     {
-        Schema::create('zaposlenis', function (Blueprint $table) {
+        Schema::create('firmas', function (Blueprint $table) {
             $table->id();
+            $table->string('naziv');
+            $table->string('PIB')->unique();
+            $table->string('maticniBroj')->unique();
+            $table->string('adresa');
+            $table->string('kontaktTelefon');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateZaposlenisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zaposlenis');
+        Schema::dropIfExists('firmas');
     }
 }

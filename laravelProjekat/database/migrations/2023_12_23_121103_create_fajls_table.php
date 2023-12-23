@@ -15,6 +15,10 @@ class CreateFajlsTable extends Migration
     {
         Schema::create('fajls', function (Blueprint $table) {
             $table->id();
+            $table->string('naziv');
+            $table->text('opis')->nullable();
+            $table->string('putanja');
+            $table->foreignId('firma_id')->constrained('firmas');
             $table->timestamps();
         });
     }

@@ -14,7 +14,12 @@ class FirmaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'naziv' => $this->faker->company,
+            'PIB' => $this->faker->unique()->numerify('#########'),
+            'maticniBroj' => $this->faker->unique()->numerify('#########'),
+            'adresa' => $this->faker->address,
+            'kontaktTelefon' => $this->faker->phoneNumber,
+            'email' => $this->faker->unique()->companyEmail,
         ];
     }
 }

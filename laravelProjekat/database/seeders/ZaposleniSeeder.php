@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Zaposleni;
 use Illuminate\Database\Seeder;
 
 class ZaposleniSeeder extends Seeder
@@ -13,6 +14,8 @@ class ZaposleniSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Zaposleni::factory()->count(10)->create();
+
+
     }
 }

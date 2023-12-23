@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Privilegija;
 use Illuminate\Database\Seeder;
 
 class PrivilegijaSeeder extends Seeder
@@ -13,6 +14,6 @@ class PrivilegijaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Privilegija::factory()->count(5)->create();
     }
 }

@@ -18,8 +18,8 @@ class CreateFirmasTable extends Migration
             $table->string('naziv');
             $table->string('PIB')->unique();
             $table->string('maticniBroj')->unique();
-            $table->string('adresa');
-            $table->string('kontaktTelefon');
+            $table->string('address'); //adresa
+            $table->string('phone'); //kontaktTelefon
             $table->string('email')->unique();
             $table->timestamps();
         });

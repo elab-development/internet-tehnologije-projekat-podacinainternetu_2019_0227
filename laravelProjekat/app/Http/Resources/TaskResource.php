@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use App\Models\Zaposleni;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,7 @@ class TaskResource extends JsonResource
             'opis' => $this->opis,
             'rok' => $this->rok,
             'status' => $this->status,
-            'zaposleni' => new ZaposleniResource(Zaposleni::find($this->zaposleni_id)),
+            'zaposleni' => new ZaposleniResource(User::find($this->zaposleni_id)),
         ];
     }
 }

@@ -20,7 +20,10 @@ class Firma extends Model
 
     public function zaposleni()
     {
-            return $this->hasMany(Zaposleni::class);
+            return $this->hasMany(User::class);
     }
-
+    public function fajlovi()
+    {
+            return $this->hasMany(Fajl::class);
+    }
 }

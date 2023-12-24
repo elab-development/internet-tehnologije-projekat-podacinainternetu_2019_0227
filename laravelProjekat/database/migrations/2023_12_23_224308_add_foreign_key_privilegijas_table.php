@@ -15,8 +15,12 @@ class AddForeignKeyPrivilegijasTable extends Migration
     {
         Schema::table('privilegijas', function (Blueprint $table) {
             
-            $table->foreignId('zaposleni_id')->constrained('users');
-            $table->foreignId('fajl_id')->constrained('fajls');
+            $table->unsignedBigInteger('zaposleni_id')->nullable(); 
+            $table->foreign('zaposleni_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('fajl_id')->nullable(); 
+            $table->foreign('fajl_id')->references('id')->on('fajls')->onDelete('cascade');
+           
           
         });
     }

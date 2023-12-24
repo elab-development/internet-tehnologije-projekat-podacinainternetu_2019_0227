@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FirmaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//  Route::get('/firme',[FirmaController::class,'index']);
+//  Route::get('/firme/{id}',[FirmaController::class,'show']);
+
+//  Route::delete('/firme/{id}',[FirmaController::class,'destroy']);
+
+//  Route::post('/firme',[FirmaController::class,'store']);
+//  Route::put('/firme/{id}',[FirmaController::class,'update']);
+
+
+ Route::resource('/firme',FirmaController::class);

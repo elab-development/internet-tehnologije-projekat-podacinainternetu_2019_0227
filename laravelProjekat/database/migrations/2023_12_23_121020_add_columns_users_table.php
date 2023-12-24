@@ -20,7 +20,9 @@ class AddColumnsUsersTable extends Migration
             $table->date('datum_pocetka_rada')->nullable();
             $table->date('datum_kraja_ugovora')->nullable();
             $table->decimal('plata', 8, 2)->nullable();
-            $table->foreignId('firma_id')->nullable()->constrained('firmas');
+
+            $table->unsignedBigInteger('firma_id')->nullable(); 
+            $table->foreign('firma_id')->references('id')->on('firmas')->onDelete('cascade');
             
         });
     }

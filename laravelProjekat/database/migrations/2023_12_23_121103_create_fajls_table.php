@@ -18,7 +18,9 @@ class CreateFajlsTable extends Migration
             $table->string('naziv');
             $table->text('opis')->nullable();
             $table->string('putanja');
-            $table->foreignId('firma_id')->constrained('firmas');
+
+            $table->unsignedBigInteger('firma_id')->nullable(); 
+            $table->foreign('firma_id')->references('id')->on('firmas')->onDelete('cascade');
             $table->timestamps();
         });
     }

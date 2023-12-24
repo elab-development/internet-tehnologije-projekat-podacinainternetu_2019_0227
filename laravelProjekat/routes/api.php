@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FirmaController;
+use App\Http\Controllers\ZaposleniController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 
  Route::resource('/firme',FirmaController::class);
+ 
+ Route::resource('/zaposleni',ZaposleniController::class);
+
+ 
+

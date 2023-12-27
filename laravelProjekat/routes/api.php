@@ -5,7 +5,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ZaposleniController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FajlController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +33,14 @@ use Illuminate\Support\Facades\Route;
 
  
 
+
+ 
+ Route::get('/fajlovi', [FajlController::class, 'index']); 
+ Route::post('/fajlovi/upload', [FajlController::class, 'upload']); 
+ Route::delete('/fajlovi/delete/{fileId}', [FajlController::class, 'destroy']);
+ 
+
+
+ 
+ //Route::get('/fajlovi/download', [FajlController::class, 'download']);
+  ///Route::put('/fajlovi/update/{fileId}', [FajlController::class, 'update']);

@@ -13,7 +13,7 @@ class ZaposleniController extends Controller
 {
     public function index()  
     {
-        $sviZaposleni = Zaposleni::all();
+        $sviZaposleni = User::paginate(5);
         return  ZaposleniResource::collection($sviZaposleni);
     }
 

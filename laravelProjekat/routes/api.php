@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FirmaController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ZaposleniController;
@@ -24,6 +25,9 @@ use App\Http\Controllers\FajlController;
 
 //  Route::post('/firme',[FirmaController::class,'store']);
 //  Route::put('/firme/{id}',[FirmaController::class,'update']);
+Route::post('/register', [AuthController::class, 'register']); 
+Route::post('/login', [AuthController::class, 'login']); 
+
 
 
  Route::resource('/firme',FirmaController::class);
@@ -31,15 +35,12 @@ use App\Http\Controllers\FajlController;
  Route::resource('/zaposleni',ZaposleniController::class);
  Route::resource('/task',TaskController::class);
 
+  
+ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+ Route::middleware('auth:sanctum')->get('/fajlovi', [FajlController::class, 'index']); 
+ Route::middleware('auth:sanctum')->post('/fajlovi/upload', [FajlController::class, 'upload']);  
+ Route::middleware('auth:sanctum')->delete('/fajlovi/delete/{fileId}', [FajlController::class, 'destroy']);
  
-
-
- 
- Route::get('/fajlovi', [FajlController::class, 'index']); 
- Route::post('/fajlovi/upload', [FajlController::class, 'upload']); 
- Route::delete('/fajlovi/delete/{fileId}', [FajlController::class, 'destroy']);
- 
-
 
  
  //Route::get('/fajlovi/download', [FajlController::class, 'download']);

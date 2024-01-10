@@ -1,0 +1,37 @@
+ 
+.firme-container {
+    padding: 1rem;
+    background-color: #A1D2CE;  
+    color: #50858B;  
+  }
+  
+  .firme-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .firme-table th,
+  .firme-table td {
+    border: 1px solid #78CAD2;  
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .firme-table th {
+    background-color: #5497A7;  
+    color: white;
+  }
+  
+  .detalji-btn {
+    background-color: #62A8AC; 
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .detalji-btn:hover {
+    background-color: #50858B; 
+  }
+  

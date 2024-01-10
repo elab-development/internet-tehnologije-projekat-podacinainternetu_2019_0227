@@ -1,4 +1,4 @@
- 
+// Firme.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Firme.css';
@@ -7,6 +7,7 @@ import FirmaRow from './FirmaRow';
 
 const Firme = () => {
   const [firme, setFirme] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,8 +22,25 @@ const Firme = () => {
     dohvatiFirme();
   }, []);
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredFirme = firme.filter(
+    firma =>
+      firma.naziv.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      firma.PIB.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="firme-container">
+      <input
+        type="text"
+        placeholder="Pretraži po nazivu ili PIB-u"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        className="search-input"
+      />
       <table className="firme-table">
         <thead>
           <tr>
@@ -33,7 +51,7 @@ const Firme = () => {
           </tr>
         </thead>
         <tbody>
-          {firme.map((firma) => (
+          {filteredFirme.map((firma) => (
             <FirmaRow key={firma.id} firma={firma} onNavigate={navigate} />
           ))}
         </tbody>
@@ -41,7 +59,5 @@ const Firme = () => {
     </div>
   );
 };
-
-
 
 export default Firme;

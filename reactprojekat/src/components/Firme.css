@@ -1,8 +1,17 @@
  
 .firme-container {
     padding: 1rem;
-    background-color: #A1D2CE;  
+    background-color: #A1D2CE; 
     color: #50858B;  
+  }
+  
+  .search-input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #78CAD2;  
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .firme-table {

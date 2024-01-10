@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './LoginPage.css';
+import InputField from './InputField';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -26,20 +27,18 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <form onSubmit={handleLogin} className="login-form">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
+        <InputField
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            />
+            <InputField
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            />
         <button type="submit" className="login-button">Login</button>
       </form>
     </div>

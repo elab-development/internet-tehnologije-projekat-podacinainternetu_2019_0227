@@ -7,9 +7,20 @@ import TableRow from './TableRow';
 const Tasks = () => {
     const userId = parseInt(sessionStorage.getItem('userId'));
     const tasks = useTasks('http://127.0.0.1:8000/api/task', userId);
+    const [filter, setFilter] = useState('sve');
 
+    const filteredTasks = filter === 'sve' ? tasks : tasks.filter(task => task.status === filter);
   return (
     <div className="tasks-container">
+         <div className="filter-container">
+            <label htmlFor="statusFilter">Filter po statusu: </label>
+            <select id="statusFilter" onChange={(e) => setFilter(e.target.value)} value={filter}>
+            <option value="sve">Svi</option>
+            <option value="zavrseno">Završeno</option>
+            <option value="otkazano">Otkazano</option>
+            <option value="u izradi">U izradi</option>
+            </select>
+        </div>
       <table className="tasks-table">
         <thead>
           <tr>
@@ -21,7 +32,7 @@ const Tasks = () => {
           </tr>
         </thead>
         <tbody>
-          {tasks.map(task => (
+          {filteredTasks.map(task => (
             <TableRow key={task.id} task = {task}/>
           ))}
         </tbody>

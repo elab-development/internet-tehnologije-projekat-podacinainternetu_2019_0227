@@ -18,6 +18,8 @@ use App\Http\Controllers\FajlController;
 |
 */
 
+Route::resource('/firme',FirmaController::class);
+
 Route::get('/firme',[FirmaController::class,'index']);
 Route::get('/firme/{id}',[FirmaController::class,'show']);
 
@@ -37,9 +39,9 @@ Route::resource('/task',TaskController::class);
 
 
 
- Route::middleware('auth:sanctum')->delete('/firme/{id}',[FirmaController::class,'destroy']);
- Route::middleware('auth:sanctum')->post('/firme',[FirmaController::class,'store']);
- Route::middleware('auth:sanctum')->put('/firme/{id}',[FirmaController::class,'update']);
+//  Route::middleware('auth:sanctum')->delete('/firme/{id}',[FirmaController::class,'destroy']);
+//  Route::middleware('auth:sanctum')->post('/firme',[FirmaController::class,'store']);
+//  Route::middleware('auth:sanctum')->put('/firme/{id}',[FirmaController::class,'update']);
 
  Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 

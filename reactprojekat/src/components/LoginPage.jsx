@@ -6,9 +6,10 @@ import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = ({setToken}) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');   
   const [password, setPassword] = useState('');
-let navigate = useNavigate();
+  let navigate = useNavigate();
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {

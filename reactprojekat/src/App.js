@@ -12,6 +12,11 @@ import FileList from './components/FileList';
 
 function App() {
   const [token,setToken] = useState(null);
+
+
+
+
+
   return (
     <Router>
     <div className="App">
@@ -19,10 +24,11 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage setToken={setToken}/>} />
+        <Route path="/firme/:id" element={<FirmaDetails />} />
         <Route path="/firme" element={<Firme />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/fajlovi" element={<FileList />} />
-        <Route path="/firme/:id" element={<FirmaDetails />} />
+       
       </Routes>
     </div>
   </Router>

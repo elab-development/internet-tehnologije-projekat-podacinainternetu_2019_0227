@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Tasks.css';
 import useTasks from './useTasks';
+import TableRow from './TableRow';
 
 const Tasks = () => {
     const userId = parseInt(sessionStorage.getItem('userId'));
@@ -21,13 +22,7 @@ const Tasks = () => {
         </thead>
         <tbody>
           {tasks.map(task => (
-            <tr key={task.id}>
-              <td>{task.id}</td>
-              <td>{task.naziv}</td>
-              <td>{task.opis}</td>
-              <td>{task.rok}</td>
-              <td>{task.status}</td>
-            </tr>
+            <TableRow key={task.id} task = {task}/>
           ))}
         </tbody>
       </table>

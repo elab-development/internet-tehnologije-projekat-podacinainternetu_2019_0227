@@ -46,10 +46,9 @@ Route::resource('/task',TaskController::class);
  Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
  Route::middleware('auth:sanctum')->get('/fajlovi', [FajlController::class, 'index']); 
- Route::middleware('auth:sanctum')->post('/fajlovi/upload', [FajlController::class, 'upload']);  
+ Route::middleware('auth:sanctum')-> post('/fajlovi/upload', [FajlController::class, 'upload']); 
  Route::middleware('auth:sanctum')->delete('/fajlovi/delete/{fileId}', [FajlController::class, 'destroy']);
  
-
  
  //Route::get('/fajlovi/download', [FajlController::class, 'download']);
  ///Route::put('/fajlovi/update/{fileId}', [FajlController::class, 'update']);

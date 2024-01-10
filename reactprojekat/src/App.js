@@ -8,6 +8,7 @@ import Firme from './components/Firme';
 import FirmaDetails from './components/FirmaDetails';
 import Navbar from './components/Navbar';
 import Tasks from './components/Tasks';
+import FileList from './components/FileList';
 
 function App() {
   const [token,setToken] = useState(null);
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<LoginPage setToken={setToken}/>} />
         <Route path="/firme" element={<Firme />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/fajlovi" element={<FileList />} />
         <Route path="/firme/:id" element={<FirmaDetails />} />
       </Routes>
     </div>

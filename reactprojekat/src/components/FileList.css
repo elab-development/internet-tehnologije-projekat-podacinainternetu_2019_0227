@@ -1,0 +1,21 @@
+.file-list-container {
+    padding: 1rem;
+    background-color: #A1D2CE;  
+  }
+  
+  .file-list-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .file-list-table th, .file-list-table td {
+    border: 1px solid #78CAD2;  
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .file-list-table th {
+    background-color: #5497A7;  
+    color: white;
+  }
+  

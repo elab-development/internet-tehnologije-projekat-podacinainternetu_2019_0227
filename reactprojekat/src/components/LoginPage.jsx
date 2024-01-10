@@ -4,7 +4,7 @@ import axios from 'axios';
 import './LoginPage.css';
 import InputField from './InputField';
 
-const LoginPage = () => {
+const LoginPage = ({setToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,7 +17,7 @@ const LoginPage = () => {
       });
       const { access_token } = response.data;
       sessionStorage.setItem('authToken', access_token);
-     
+      setToken(access_token);
     } catch (error) {
       console.error('Login error', error);
       

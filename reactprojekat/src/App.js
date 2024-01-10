@@ -7,6 +7,7 @@ import LoginPage from './components/LoginPage';
 import Firme from './components/Firme';
 import FirmaDetails from './components/FirmaDetails';
 import Navbar from './components/Navbar';
+import Tasks from './components/Tasks';
 
 function App() {
   const [token,setToken] = useState(null);
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage setToken={setToken}/>} />
         <Route path="/firme" element={<Firme />} />
+        <Route path="/tasks" element={<Tasks />} />
         <Route path="/firme/:id" element={<FirmaDetails />} />
       </Routes>
     </div>

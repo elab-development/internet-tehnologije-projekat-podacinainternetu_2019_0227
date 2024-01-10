@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './LoginPage.css';
 import InputField from './InputField';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = ({setToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+let navigate = useNavigate();
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -17,7 +18,9 @@ const LoginPage = ({setToken}) => {
       });
       const { access_token } = response.data;
       sessionStorage.setItem('authToken', access_token);
+      sessionStorage.setItem('userId', response.data.user.id);
       setToken(access_token);
+      navigate('/tasks');
     } catch (error) {
       console.error('Login error', error);
       

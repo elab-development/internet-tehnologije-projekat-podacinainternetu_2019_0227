@@ -12,7 +12,7 @@ const Firme = () => {
   useEffect(() => {
     const dohvatiFirme = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1/api/firme');
+        const response = await axios.get('http://127.0.0.1:8000/api/firme');
         setFirme(response.data);
       } catch (error) {
         console.error('Došlo je do greške prilikom dohvatanja firmi', error);

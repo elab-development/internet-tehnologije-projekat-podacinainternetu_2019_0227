@@ -1,29 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Tasks.css';
+import useTasks from './useTasks';
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState([]);
-  const userId = parseInt(sessionStorage.getItem('userId'));
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/task', {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
-          },
-          params: { userId }
-        });
-        console.log(response)
-        setTasks(response.data.data);
-      } catch (error) {
-        console.error('Greška prilikom dohvatanja taskova', error);
-      }
-    };
-
-    fetchTasks();
-  }, [userId]);
+    const userId = parseInt(sessionStorage.getItem('userId'));
+    const tasks = useTasks('http://127.0.0.1:8000/api/task', userId);
 
   return (
     <div className="tasks-container">

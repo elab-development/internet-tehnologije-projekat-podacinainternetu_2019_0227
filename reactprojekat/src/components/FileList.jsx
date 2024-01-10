@@ -4,26 +4,35 @@ import './FileList.css';
 
 const FileList = () => {
   const [files, setFiles] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filesPerPage, setFilesPerPage] = useState(5);
   useEffect(() => {
-    const fetchFiles = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/fajlovi', {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
-          }
-        });
-        setFiles(response.data.entries);
-      } catch (error) {
-        console.error('Greška prilikom dohvatanja fajlova', error);
-      }
-    };
-
     fetchFiles();
   }, []);
 
+  const fetchFiles = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/fajlovi', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+        }
+      });
+      setFiles(response.data.entries);
+    } catch (error) {
+      console.error('Greška prilikom dohvatanja fajlova', error);
+    }
+  };
+
+
+ 
+  const indexOfLastFile = currentPage * filesPerPage;
+  const indexOfFirstFile = indexOfLastFile - filesPerPage;
+  const currentFiles = files.slice(indexOfFirstFile, indexOfLastFile);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <div className="file-list-container">
+     
       <table className="file-list-table">
         <thead>
           <tr>
@@ -34,19 +43,25 @@ const FileList = () => {
           </tr>
         </thead>
         <tbody>
-          {files.map(file => (
+          {currentFiles.map(file => (
             <tr key={file.id}>
               <td>{file.name}</td>
               <td>{file.server_modified}</td>
               <td>{file.size}</td>
               <td>
-               
                 <a href={`https://www.dropbox.com/home${file.path_lower}`} target="_blank" rel="noopener noreferrer">Otvori</a>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {[...Array(Math.ceil(files.length / filesPerPage)).keys()].map(number => (
+          <button key={number + 1} onClick={() => paginate(number + 1)}>
+            {number + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

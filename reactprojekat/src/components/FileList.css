@@ -19,3 +19,22 @@
     color: white;
   }
   
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #78CAD2;
+    background: #A1D2CE;
+    color: #50858B;
+  }
+  
+  .pagination button:hover {
+    background-color: #5497A7;
+    color: white;
+  }
+  

@@ -17,15 +17,15 @@ use App\Http\Controllers\FajlController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::post('/register', [AuthController::class, 'register']); 
+Route::post('/login', [AuthController::class, 'login']); 
 Route::resource('/firme',FirmaController::class);
 
 Route::get('/firme',[FirmaController::class,'index']);
 Route::get('/firme/{id}',[FirmaController::class,'show']);
 
 
-Route::post('/register', [AuthController::class, 'register']); 
-Route::post('/login', [AuthController::class, 'login']); 
+
 
 Route::resource('/task',TaskController::class);
 

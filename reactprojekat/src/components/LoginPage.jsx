@@ -6,10 +6,9 @@ import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = ({setToken}) => {
-  const [email, setEmail] = useState('');   
-  const [password, setPassword] = useState('');
-  let navigate = useNavigate();
-
+  const [email, setEmail] = useState('aaaa@example.com');   
+  const [password, setPassword] = useState('password');
+  let navigate = useNavigate(); 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -23,8 +22,7 @@ const LoginPage = ({setToken}) => {
       setToken(access_token);
       navigate('/tasks');
     } catch (error) {
-      console.error('Login error', error);
-      
+      console.error('Login error', error); 
     }
   };
 

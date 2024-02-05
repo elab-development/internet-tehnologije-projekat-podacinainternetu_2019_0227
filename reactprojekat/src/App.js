@@ -9,6 +9,7 @@ import FirmaDetails from './components/FirmaDetails';
 import Navbar from './components/Navbar';
 import Tasks from './components/Tasks';
 import FileList from './components/FileList';
+import RegistrationPage from './components/RegistrationPage';
 
 function App() {
   const [token,setToken] = useState(null);
@@ -23,6 +24,8 @@ function App() {
       <Navbar token={token} setToken={setToken}></Navbar>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+
         <Route path="/login" element={<LoginPage setToken={setToken}/>} />
         <Route path="/firme/:id" element={<FirmaDetails />} />
         <Route path="/firme" element={<Firme />} />

@@ -27,7 +27,7 @@ Route::get('/firme/{id}',[FirmaController::class,'show']);
 
 
 
-Route::resource('/task',TaskController::class);
+Route::middleware('auth:sanctum')->resource('/task',TaskController::class);
 
 
  //Route::resource('/firme',FirmaController::class);

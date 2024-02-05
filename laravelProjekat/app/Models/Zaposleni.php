@@ -21,6 +21,9 @@ class Zaposleni extends User
     {
         return $this->belongsTo(Firma::class);
     }
-
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 
 }

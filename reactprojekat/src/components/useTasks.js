@@ -12,8 +12,8 @@ const useTasks = (url, userId) => {
             Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
           }
         });
-        const filteredTasks = response.data.data.filter(task => task.zaposleni.id === userId);
-        setTasks(filteredTasks);
+        
+        setTasks(response.data.data);
       } catch (error) {
         console.error('Greška prilikom dohvatanja taskova', error);
       }

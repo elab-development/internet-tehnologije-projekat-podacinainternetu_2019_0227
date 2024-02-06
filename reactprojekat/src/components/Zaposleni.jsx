@@ -16,6 +16,7 @@ const Zaposleni = () => {
     plata: '',
     firma_id: '',
   });
+  const [selectedZaposleniId, setSelectedZaposleniId] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +33,7 @@ const Zaposleni = () => {
 
       // Dodajte novog zaposlenog u niz zaposlenih
       setZaposleni([...zaposleni, response.data.zaposleni]);
-      console.log(response)
+
       // Resetujte formu nakon uspešnog kreiranja
       setNewZaposleni({
         name: '',
@@ -49,6 +50,46 @@ const Zaposleni = () => {
       console.error('Greška prilikom kreiranja zaposlenog:', error);
     }
   };
+
+  const handleEditClick = (id) => {
+    // Pronađite zaposlenog u nizu na osnovu ID-ja i postavite ga u formu za ažuriranje
+    const selectedZaposleni = zaposleni.find((z) => z.id === id);
+    if (selectedZaposleni) {
+      setNewZaposleni(selectedZaposleni);
+      setSelectedZaposleniId(id);
+    }
+  };
+
+  const handleUpdateClick = async () => {
+    try {
+      const token = sessionStorage.getItem('authToken');
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+      };
+      const response = await axios.put(`http://127.0.0.1:8000/api/zaposleni/${selectedZaposleniId}`, newZaposleni, { headers });
+
+      // Ažurirajte zaposlenog u nizu sa novim podacima
+      const updatedZaposleni = zaposleni.map((z) => (z.id === selectedZaposleniId ? response.data.zaposleni : z));
+      setZaposleni(updatedZaposleni);
+
+      // Resetujte formu za ažuriranje
+      setNewZaposleni({
+        name: '',
+        email: '',
+        password: '',
+        pozicija: '',
+        odeljenje: '',
+        datum_pocetka_rada: '',
+        datum_kraja_ugovora: '',
+        plata: '',
+        firma_id: '',
+      });
+      setSelectedZaposleniId(null);
+    } catch (error) {
+      console.error('Greška prilikom ažuriranja zaposlenog:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchZaposleni = async () => {
       try {
@@ -67,6 +108,7 @@ const Zaposleni = () => {
 
     fetchZaposleni();
   }, []);
+
   const handleDeleteClick = async (id) => {
     try {
       const token = sessionStorage.getItem('authToken');
@@ -75,12 +117,13 @@ const Zaposleni = () => {
       };
       await axios.delete(`http://127.0.0.1:8000/api/zaposleni/${id}`, { headers });
 
-     
+      // Uklonite zaposlenog iz niza
       setZaposleni(zaposleni.filter((z) => z.id !== id));
     } catch (error) {
       console.error('Greška prilikom brisanja zaposlenog:', error);
     }
-  }
+  };
+
   if (loading) {
     return <p>Učitavanje...</p>;
   }
@@ -99,7 +142,6 @@ const Zaposleni = () => {
             <th>Datum početka rada</th>
             <th>Datum kraja ugovora</th>
             <th>Plata</th>
-          
             <th>Akcije</th>
           </tr>
         </thead>
@@ -114,8 +156,8 @@ const Zaposleni = () => {
               <td>{zaposlen.datum_pocetka_rada}</td>
               <td>{zaposlen.datum_kraja_ugovora}</td>
               <td>{zaposlen.plata}</td>
-             
               <td>
+                <button onClick={() => handleEditClick(zaposlen.id)}>Izmeni</button>
                 <button onClick={() => handleDeleteClick(zaposlen.id)}>Obriši</button>
               </td>
             </tr>
@@ -123,7 +165,7 @@ const Zaposleni = () => {
         </tbody>
       </table>
       <div className="zaposleni-form">
-        <h2>Kreiraj novog zaposlenog</h2>
+        <h2>Kreiraj/Ažuriraj zaposlenog</h2>
         <div>
           <label>Ime:</label>
           <input type="text" name="name" value={newZaposleni.name} onChange={handleInputChange} />
@@ -160,7 +202,11 @@ const Zaposleni = () => {
           <label>ID Firme:</label>
           <input type="number" name="firma_id" value={newZaposleni.firma_id} onChange={handleInputChange} />
         </div>
-        <button onClick={handleCreateClick}>Kreiraj</button>
+        {selectedZaposleniId ? (
+          <button onClick={handleUpdateClick}>Ažuriraj</button>
+        ) : (
+          <button onClick={handleCreateClick}>Kreiraj</button>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Firme.css';
@@ -8,6 +7,7 @@ import FirmaRow from './FirmaRow';
 const Firme = () => {
   const [firme, setFirme] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortType, setSortType] = useState('asc'); // Dodato stanje za sortiranje
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +26,26 @@ const Firme = () => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredFirme = firme.filter(
+  const handleSortClick = () => {
+    // Promeni način sortiranja pritiskom na dugme
+    if (sortType === 'asc') {
+      setSortType('desc');
+    } else {
+      setSortType('asc');
+    }
+  };
+
+  // Sortiraj firme na osnovu naziva
+  const sortedFirme = firme.sort((a, b) => {
+    if (sortType === 'asc') {
+      return a.naziv.localeCompare(b.naziv);
+    } else {
+      return b.naziv.localeCompare(a.naziv);
+    }
+  });
+
+  // Filtriranje firmi prema unetom pojmu
+  const filteredFirme = sortedFirme.filter(
     firma =>
       firma.naziv.toLowerCase().includes(searchTerm.toLowerCase()) ||
       firma.PIB.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,6 +60,9 @@ const Firme = () => {
         onChange={handleSearchChange}
         className="search-input"
       />
+      <button onClick={handleSortClick}>
+        Sortiraj po nazivu ({sortType === 'asc' ? 'rastuće' : 'opadajuće'})
+      </button>
       <table className="firme-table">
         <thead>
           <tr>

@@ -5,7 +5,50 @@ import './Zaposleni.css';
 const Zaposleni = () => {
   const [zaposleni, setZaposleni] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newZaposleni, setNewZaposleni] = useState({
+    name: '',
+    email: '',
+    password: '',
+    pozicija: '',
+    odeljenje: '',
+    datum_pocetka_rada: '',
+    datum_kraja_ugovora: '',
+    plata: '',
+    firma_id: '',
+  });
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewZaposleni({ ...newZaposleni, [name]: value });
+  };
+
+  const handleCreateClick = async () => {
+    try {
+      const token = sessionStorage.getItem('authToken');
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+      };
+      const response = await axios.post('http://127.0.0.1:8000/api/zaposleni', newZaposleni, { headers });
+
+      // Dodajte novog zaposlenog u niz zaposlenih
+      setZaposleni([...zaposleni, response.data.zaposleni]);
+      console.log(response)
+      // Resetujte formu nakon uspešnog kreiranja
+      setNewZaposleni({
+        name: '',
+        email: '',
+        password: '',
+        pozicija: '',
+        odeljenje: '',
+        datum_pocetka_rada: '',
+        datum_kraja_ugovora: '',
+        plata: '',
+        firma_id: '',
+      });
+    } catch (error) {
+      console.error('Greška prilikom kreiranja zaposlenog:', error);
+    }
+  };
   useEffect(() => {
     const fetchZaposleni = async () => {
       try {
@@ -56,7 +99,7 @@ const Zaposleni = () => {
             <th>Datum početka rada</th>
             <th>Datum kraja ugovora</th>
             <th>Plata</th>
-            <th>Firma</th>
+          
             <th>Akcije</th>
           </tr>
         </thead>
@@ -71,7 +114,7 @@ const Zaposleni = () => {
               <td>{zaposlen.datum_pocetka_rada}</td>
               <td>{zaposlen.datum_kraja_ugovora}</td>
               <td>{zaposlen.plata}</td>
-              <td>{zaposlen.firma.naziv}</td>
+             
               <td>
                 <button onClick={() => handleDeleteClick(zaposlen.id)}>Obriši</button>
               </td>
@@ -79,6 +122,46 @@ const Zaposleni = () => {
           ))}
         </tbody>
       </table>
+      <div className="zaposleni-form">
+        <h2>Kreiraj novog zaposlenog</h2>
+        <div>
+          <label>Ime:</label>
+          <input type="text" name="name" value={newZaposleni.name} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="email" name="email" value={newZaposleni.email} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Šifra:</label>
+          <input type="password" name="password" value={newZaposleni.password} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Pozicija:</label>
+          <input type="text" name="pozicija" value={newZaposleni.pozicija} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Odeljenje:</label>
+          <input type="text" name="odeljenje" value={newZaposleni.odeljenje} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Datum početka rada:</label>
+          <input type="date" name="datum_pocetka_rada" value={newZaposleni.datum_pocetka_rada} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Datum kraja ugovora:</label>
+          <input type="date" name="datum_kraja_ugovora" value={newZaposleni.datum_kraja_ugovora} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>Plata:</label>
+          <input type="number" name="plata" value={newZaposleni.plata} onChange={handleInputChange} />
+        </div>
+        <div>
+          <label>ID Firme:</label>
+          <input type="number" name="firma_id" value={newZaposleni.firma_id} onChange={handleInputChange} />
+        </div>
+        <button onClick={handleCreateClick}>Kreiraj</button>
+      </div>
     </div>
   );
 };

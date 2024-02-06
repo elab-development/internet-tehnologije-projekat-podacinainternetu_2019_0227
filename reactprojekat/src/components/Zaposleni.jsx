@@ -24,7 +24,20 @@ const Zaposleni = () => {
 
     fetchZaposleni();
   }, []);
+  const handleDeleteClick = async (id) => {
+    try {
+      const token = sessionStorage.getItem('authToken');
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+      };
+      await axios.delete(`http://127.0.0.1:8000/api/zaposleni/${id}`, { headers });
 
+     
+      setZaposleni(zaposleni.filter((z) => z.id !== id));
+    } catch (error) {
+      console.error('Greška prilikom brisanja zaposlenog:', error);
+    }
+  }
   if (loading) {
     return <p>Učitavanje...</p>;
   }
@@ -44,6 +57,7 @@ const Zaposleni = () => {
             <th>Datum kraja ugovora</th>
             <th>Plata</th>
             <th>Firma</th>
+            <th>Akcije</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +72,9 @@ const Zaposleni = () => {
               <td>{zaposlen.datum_kraja_ugovora}</td>
               <td>{zaposlen.plata}</td>
               <td>{zaposlen.firma.naziv}</td>
+              <td>
+                <button onClick={() => handleDeleteClick(zaposlen.id)}>Obriši</button>
+              </td>
             </tr>
           ))}
         </tbody>

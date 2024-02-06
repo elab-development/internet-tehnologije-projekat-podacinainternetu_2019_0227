@@ -1,24 +1,24 @@
-.tasks-container {
-    padding: 1rem;
-    background-color: #A1D2CE;  
-    color: #50858B; 
-  }
-  
-  .tasks-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  .tasks-table th,
-  .tasks-table td {
-    border: 1px solid #78CAD2;  
-    padding: 0.5rem;
-    text-align: left;
-  }
-  
-  .tasks-table th {
-    background-color: #5497A7;  
-    color: white;
-  }
-  
+ 
+.zaposleni-container {
+  padding: 1rem;
+  background-color: #A1D2CE;
+  color: #50858B;
+}
+
+.zaposleni-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.zaposleni-table th,
+.zaposleni-table td {
+  border: 1px solid #78CAD2;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.zaposleni-table th {
+  background-color: #5497A7;
+  color: white;
+}

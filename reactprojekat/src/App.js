@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Tasks from './components/Tasks';
 import FileList from './components/FileList';
 import RegistrationPage from './components/RegistrationPage';
+import Zaposleni from './components/Zaposleni';
 
 function App() {
   const [token,setToken] = useState(null);
@@ -31,7 +32,7 @@ function App() {
         <Route path="/firme" element={<Firme />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/fajlovi" element={<FileList />} />
-       
+        <Route path="/zaposleni" element={<Zaposleni />} />
       </Routes>
     </div>
   </Router>

@@ -15,19 +15,19 @@ import Zaposleni from './components/Zaposleni';
 function App() {
   const [token,setToken] = useState(null);
 
-
+  const [uloga,setUloga] = useState(null);
 
 
 
   return (
     <Router>
     <div className="App">
-      <Navbar token={token} setToken={setToken}></Navbar>
+      <Navbar token={token} setToken={setToken} uloga={uloga} setUloga={setUloga}></Navbar>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegistrationPage />} />
 
-        <Route path="/login" element={<LoginPage setToken={setToken}/>} />
+        <Route path="/login" element={<LoginPage setToken={setToken}  setUloga={setUloga}/>} />
         <Route path="/firme/:id" element={<FirmaDetails />} />
         <Route path="/firme" element={<Firme />} />
         <Route path="/tasks" element={<Tasks />} />

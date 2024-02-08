@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Firma;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class ZaposleniFactory extends Factory
 {
@@ -20,7 +21,7 @@ class ZaposleniFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => '$2y$10$TKh8H1.PfQxTtLdBfK5OSuW/JuJ56WY9p9bX8YkEx.FS6WBg/3dJC',  
+            'password' => Hash::make('password'),
             'remember_token' =>'$2y$10$TKh8H1',
             'pozicija' => $this->faker->jobTitle,
             'odeljenje' => $this->faker->word,

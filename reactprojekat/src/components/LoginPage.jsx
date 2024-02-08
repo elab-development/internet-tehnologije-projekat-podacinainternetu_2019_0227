@@ -5,8 +5,8 @@ import './LoginPage.css';
 import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = ({setToken}) => {
-  const [email, setEmail] = useState('aaaa@example.com');   
+const LoginPage = ({setToken,setUloga}) => {
+  const [email, setEmail] = useState('feeney.aisha@example.net');   
   const [password, setPassword] = useState('password');
   let navigate = useNavigate(); 
   const handleLogin = async (event) => {
@@ -20,7 +20,13 @@ const LoginPage = ({setToken}) => {
       sessionStorage.setItem('authToken', access_token);
       sessionStorage.setItem('userId', response.data.user.id);
       setToken(access_token);
-      navigate('/tasks');
+      setUloga(response.data.user.uloga);
+      if(response.data.user.uloga=="korisnik"){
+        navigate('/tasks');
+      }else{
+        navigate('/admin');
+      }
+     
     } catch (error) {
       console.error('Login error', error); 
     }

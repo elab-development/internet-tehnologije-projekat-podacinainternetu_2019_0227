@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Navbar.css';
 
-const Navbar = ({ token, setToken }) => {
+const Navbar = ({ token, setToken, uloga, setUloga }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -15,6 +15,7 @@ const Navbar = ({ token, setToken }) => {
       });
       sessionStorage.removeItem('authToken');
       setToken(null);
+      setUloga(null);
       navigate('/');
     } catch (error) {
       console.error('Greška prilikom odjave', error);
@@ -27,9 +28,9 @@ const Navbar = ({ token, setToken }) => {
       {token ? (
         <>
           <Link to="/firme" className="nav-link">Firme</Link>
-          <Link to="/tasks" className="nav-link">Tasks</Link>
-          <Link to="/fajlovi" className="nav-link">Fajlovi</Link>
-          <Link to="/zaposleni" className="nav-link">Zaposleni</Link>
+          {uloga === 'korisnik' && <Link to="/tasks" className="nav-link">Tasks</Link>}
+          {(uloga === 'korisnik' || uloga === 'admin') && <Link to="/fajlovi" className="nav-link">Fajlovi</Link>}
+          {uloga === 'admin' && <Link to="/zaposleni" className="nav-link">Zaposleni</Link>}
           <button onClick={handleLogout} className="nav-link">Odjava</button>
         </>
       ) : (

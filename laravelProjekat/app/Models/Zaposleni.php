@@ -14,7 +14,7 @@ class Zaposleni extends User
         'datum_pocetka_rada',
         'datum_kraja_ugovora',  
         'plata',
-        'firma_id',  
+        'firma_id',   'uloga',
        
     ];
     public function firma()

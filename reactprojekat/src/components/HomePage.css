@@ -61,3 +61,32 @@
     }
   }
   
+
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Centrira slike i obezbeđuje ravnomerni razmak između njih */
+    gap: 20px; /* Razmak između slika */
+    margin-top: 2rem;
+  }
+  
+  .image-container {
+    flex: 1 0 calc(50% - 20px); /* Postavlja širinu kontejnera na 50% minus razmak, omogućavajući dva elementa po redu */
+    display: flex;
+    justify-content: center; /* Centrira sliku unutar kontejnera */
+    align-items: center; /* Centrira sliku vertikalno */
+    overflow: hidden; /* Sprečava ispisivanje slike izvan kontejnera */
+  }
+  
+  .image {
+    width: 100%; /* Postavlja širinu slike na 100% kontejnera */
+    height: auto; /* Održava aspekt ratio slike */
+    object-fit: cover; /* Osigurava da slika pokriva dostupan prostor, bez gubitka aspekta */
+  }
+  
+  @media (max-width: 768px) {
+    .image-container {
+      flex: 1 0 100%; /* Na manjim ekranima postavlja širinu kontejnera na 100%, omogućavajući jednu sliku po redu */
+    }
+  }
+  

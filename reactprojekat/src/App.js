@@ -11,6 +11,7 @@ import Tasks from './components/Tasks';
 import FileList from './components/FileList';
 import RegistrationPage from './components/RegistrationPage';
 import Zaposleni from './components/Zaposleni';
+import FileUploadForm from './components/FileUploadForm';
 
 function App() {
   const [token,setToken] = useState(null);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/firme/:id" element={<FirmaDetails />} />
         <Route path="/firme" element={<Firme />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/fajlovi/upload" element={<FileUploadForm />} />
         <Route path="/fajlovi" element={<FileList />} />
         <Route path="/zaposleni" element={<Zaposleni />} />
       </Routes>

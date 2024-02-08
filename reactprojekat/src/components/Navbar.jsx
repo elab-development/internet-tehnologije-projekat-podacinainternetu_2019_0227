@@ -30,10 +30,13 @@ const Navbar = ({ token, setToken, uloga, setUloga }) => {
           <Link to="/firme" className="nav-link">Firme</Link>
           {uloga === 'korisnik' && <Link to="/tasks" className="nav-link">Tasks</Link>}
           {(uloga === 'korisnik' || uloga === 'admin') && <Link to="/fajlovi" className="nav-link">Fajlovi</Link>}
+          {(uloga === 'korisnik' || uloga === 'admin') && <Link to="/fajlovi/upload" className="nav-link">Upload</Link>}
+
           {uloga === 'admin' && <Link to="/zaposleni" className="nav-link">Zaposleni</Link>}
           <button onClick={handleLogout} className="nav-link">Odjava</button>
         </>
       ) : (
+        
         <Link to="/login" className="nav-link">Prijava</Link>
       )}
     </nav>

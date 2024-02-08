@@ -19,6 +19,7 @@ const LoginPage = ({setToken,setUloga}) => {
       const { access_token } = response.data;
       sessionStorage.setItem('authToken', access_token);
       sessionStorage.setItem('userId', response.data.user.id);
+      sessionStorage.setItem('firmaId', response.data.user.firma_id);
       setToken(access_token);
       setUloga(response.data.user.uloga);
       if(response.data.user.uloga=="korisnik"){

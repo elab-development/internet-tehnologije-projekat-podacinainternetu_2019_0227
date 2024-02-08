@@ -11,10 +11,14 @@ const FileList = () => {
   }, []);
 
   const fetchFiles = async () => {
+    const firmaId = sessionStorage.getItem('firmaId');
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/fajlovi', {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`
+        },
+        params: {
+          firmaId: firmaId  
         }
       });
       setFiles(response.data.entries);

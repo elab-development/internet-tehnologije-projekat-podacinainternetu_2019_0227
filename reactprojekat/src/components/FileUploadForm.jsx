@@ -19,6 +19,10 @@ const FileUploadForm = () => {
     const formData = new FormData();
     formData.append('file', file);
 
+    const firmaId = sessionStorage.getItem('firmaId'); // Dohvatanje firmeId iz sessionStorage-a
+
+    formData.append('firmaId', firmaId); // Dodavanje firmeId u formData
+
     try {
         const token = sessionStorage.getItem('authToken');
         const response = await axios.post('http://127.0.0.1:8000/api/fajlovi/upload', formData, {
@@ -36,12 +40,14 @@ const FileUploadForm = () => {
   };
 
   return (
+  <> <h2 className="todo-list-title">UPLOADUJ FILE</h2>
     <div className="login-page">
+        
       <form className="login-form" onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
         <button type="submit" className="login-button">Otpremi fajl</button>
       </form>
-    </div>
+    </div></>
   );
 };
 

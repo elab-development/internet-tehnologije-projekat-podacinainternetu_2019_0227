@@ -12,6 +12,7 @@ import FileList from './components/FileList';
 import RegistrationPage from './components/RegistrationPage';
 import Zaposleni from './components/Zaposleni';
 import FileUploadForm from './components/FileUploadForm';
+import AdminPage from './components/Admin';
 
 function App() {
   const [token,setToken] = useState(null);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/fajlovi/upload" element={<FileUploadForm />} />
         <Route path="/fajlovi" element={<FileList />} />
         <Route path="/zaposleni" element={<Zaposleni />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </div>
   </Router>

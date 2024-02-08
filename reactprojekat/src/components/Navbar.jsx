@@ -25,14 +25,16 @@ const Navbar = ({ token, setToken, uloga, setUloga }) => {
   return (
     <nav className="navbar">
       <Link to="/" className="nav-link">Početna</Link>
+      <Link to="/firme" className="nav-link">Firme</Link>
       {token ? (
         <>
-          <Link to="/firme" className="nav-link">Firme</Link>
+        
           {uloga === 'korisnik' && <Link to="/tasks" className="nav-link">Tasks</Link>}
           {(uloga === 'korisnik' || uloga === 'admin') && <Link to="/fajlovi" className="nav-link">Fajlovi</Link>}
           {(uloga === 'korisnik' || uloga === 'admin') && <Link to="/fajlovi/upload" className="nav-link">Upload</Link>}
 
           {uloga === 'admin' && <Link to="/zaposleni" className="nav-link">Zaposleni</Link>}
+          {uloga === 'admin' && <Link to="/admin" className="nav-link">Admin</Link>}
           <button onClick={handleLogout} className="nav-link">Odjava</button>
         </>
       ) : (

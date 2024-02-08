@@ -38,8 +38,10 @@ const Navbar = ({ token, setToken, uloga, setUloga }) => {
           <button onClick={handleLogout} className="nav-link">Odjava</button>
         </>
       ) : (
-        
-        <Link to="/login" className="nav-link">Prijava</Link>
+        <>
+          <Link to="/login" className="nav-link">Prijava</Link>
+          <Link to="/register" className="nav-link">Register</Link>
+        </>
       )}
     </nav>
   );

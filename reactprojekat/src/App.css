@@ -79,3 +79,85 @@
 .register-button:hover {
   background-color: #62A8AC;
 }
+
+
+.chart-container {
+  width: 60%;
+ 
+}
+
+.chart {
+  margin-bottom: 20px;
+}
+
+.zaposleni-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #A1D2CE;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.zaposleni-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.zaposleni-table th, .zaposleni-table td {
+  border: 1px solid #78CAD2;
+  padding: 8px;
+  text-align: left;
+}
+
+.zaposleni-table th {
+  background-color: #78CAD2;
+  color: white;
+}
+
+.zaposleni-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.zaposleni-form h2 {
+  margin-bottom: 20px;
+  color: #282c34;
+}
+
+.zaposleni-form label {
+  font-weight: bold;
+}
+
+.zaposleni-form input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #78CAD2;
+}
+
+.zaposleni-form input::placeholder {
+  color: #5497A7;
+}
+
+.zaposleni-form button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: #78CAD2;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.zaposleni-form button:hover {
+  background-color: #62A8AC;
+}

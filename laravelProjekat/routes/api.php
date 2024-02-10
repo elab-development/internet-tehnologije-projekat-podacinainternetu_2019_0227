@@ -25,7 +25,7 @@ Route::get('/firme',[FirmaController::class,'index']);
 Route::get('/firme/{id}',[FirmaController::class,'show']);
 
 
-Route::get('/statistics', [FajlController::class, 'statistics']);
+Route::middleware('auth:sanctum')->get('/statistics', [FajlController::class, 'statistics']);
 
 Route::middleware('auth:sanctum')->resource('/task',TaskController::class);
 

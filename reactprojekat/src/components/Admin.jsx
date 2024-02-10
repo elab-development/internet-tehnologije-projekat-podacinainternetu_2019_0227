@@ -35,11 +35,11 @@ const AdminPage = () => {
   
 
   return (
-    <div>
+    <div className="chart-container" style={{ marginLeft: "15%",marginRight:"10%" }}>
       <h1>Statistika po firmama</h1>
       {data && (
         <>
-          <div>
+          <div className="chart">
             <h2>Broj zaposlenih po firmi</h2>
             <Bar
               key="employees-chart"
@@ -64,7 +64,7 @@ const AdminPage = () => {
               }}
             />
           </div>
-          <div>
+          <div className="chart">
             <h2>Broj fajlova po firmi</h2>
             <Bar
               key="files-chart"

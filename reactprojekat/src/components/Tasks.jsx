@@ -12,7 +12,7 @@ const Tasks = () => {
     const filteredTasks = filter === 'sve' ? tasks : tasks.filter(task => task.status === filter);
     
     return (
-        <div className="tasks-container">
+        <div className="zaposleni-container">
             <h2 className="todo-list-title">MOJA TODO LISTA</h2>
            
             {filteredTasks.length === 0 ? (
@@ -28,7 +28,7 @@ const Tasks = () => {
                   <option value="u izradi">U izradi</option>
               </select>
           </div>
-                <table className="tasks-table">
+                <table className="zaposleni-table">
                     <thead>
                         <tr>
                             <th>ID</th>

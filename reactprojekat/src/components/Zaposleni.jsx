@@ -18,6 +18,26 @@ const Zaposleni = () => {
   });
   const [selectedZaposleniId, setSelectedZaposleniId] = useState(null);
 
+
+  useEffect(() => {
+    const fetchZaposleni = async () => {
+      try {
+        const token = sessionStorage.getItem('token');
+        const headers = {
+          'Authorization': `Bearer ${token}`,
+        };
+        const response = await axios.get('http://127.0.0.1:8000/api/zaposleni', { headers });
+        setZaposleni(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Greška prilikom dobijanja zaposlenih:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchZaposleni();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewZaposleni({ ...newZaposleni, [name]: value });
@@ -90,24 +110,7 @@ const Zaposleni = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchZaposleni = async () => {
-      try {
-        const token = sessionStorage.getItem('token');
-        const headers = {
-          'Authorization': `Bearer ${token}`,
-        };
-        const response = await axios.get('http://127.0.0.1:8000/api/zaposleni', { headers });
-        setZaposleni(response.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Greška prilikom dobijanja zaposlenih:', error);
-        setLoading(false);
-      }
-    };
 
-    fetchZaposleni();
-  }, []);
 
   const handleDeleteClick = async (id) => {
     try {
